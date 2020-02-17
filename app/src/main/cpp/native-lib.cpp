@@ -116,6 +116,41 @@ void chille_insert_sort(int* arr,int len){
     }
 }
 
+int  adjustArray(int* arr,int low,int high){
+     int X = arr[low];
+     while (low < high){
+         while (low < high && arr[high] > X){
+             high--;
+         }
+         if (low < high){
+             arr[low] = arr[high];
+             low++;
+         }
+
+         while (low < high && arr[low] < X){
+             low++;
+         }
+         if (low < high){
+             arr[high] = arr[low];
+             high--;
+         }
+     }
+    arr[low] = X;
+    return low;
+}
+//快排
+//1．先从数列中取出一个数作为基准数。
+//2．分区过程，将比这个数大的数全放到它的右边，小于或等于它的数全放到它的左边。
+//3．再对左右区间重复第二步，直到各区间只有一个数。
+void quickSort(int* arr,int low,int high){
+    if (low > high){
+        return;
+    }
+    int cardinalNum = adjustArray(arr,low,high);
+    quickSort(arr,low,cardinalNum-1);
+    quickSort(arr,cardinalNum+1,high);
+}
+
 
 
 
