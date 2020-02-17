@@ -93,8 +93,31 @@ void insertSort(int arr[], int len){
         }
         arr[j] = temp;
     }
-
 }
+//希尔排序（分治的插入排序）
+void chille_insert_sort(int* arr,int len){
+    int step = len /2;
+    while (step > 0){
+        for (int i = 0; i < step; ++i) {
+            for (int j = i+step; j < len ; j+=step) {
+                 int k;
+                 int temp = arr[j];
+                 for (k = j; k>i; k-=step) {
+                      if (arr[k-1] > arr[k]){
+                          arr[k] = arr[k-1];
+                      }else{
+                          break;
+                      }
+                 }
+                 arr[k] = temp;
+            }
+        }
+        step/=2;
+    }
+}
+
+
+
 
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_aispeech_sort_MainActivity_stringFromJNI(
